@@ -35,7 +35,7 @@
 
     <div id="text">
       <div id="brandname">Food Matters</div>
-      This is bananas!
+      <span>{{randomText}}</span>
     </div>
 
   </template>
@@ -46,6 +46,25 @@
   Polymer({
 
     is: "fm-welcome-animation",
+
+    properties: {
+
+      randomText: {
+        type: String,
+        value: function() {
+          var texts = [
+            'This is bananas!',
+            'You are what you eat',
+            '85% free of pesticides',
+            'Ecologic farm',
+            'Strawberry harvest is only in summer...'
+          ];
+
+          return texts[Math.floor(Math.random() * texts.length)];
+        }
+      }
+
+    },
 
     attached: function() {
       var bananaEffect = new KeyframeEffect(this.$.bananas, [
@@ -65,7 +84,8 @@
       });
 
       var groupEffect = new GroupEffect([bananaEffect, textEffect]);
-      document.timeline.play(groupEffect);
+      var player = document.timeline.play(groupEffect);
+
     }
 
   });
