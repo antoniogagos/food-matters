@@ -1,0 +1,46 @@
+<dom-module id="fm-welcome-animation">
+  <template>
+
+    <style>
+
+      :host {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        height: 100%;
+
+        background-color: #F6F4E7;
+        background-image: url('../images/bg.png');
+      }
+
+      #text {
+        text-align: center;
+      }
+
+      #brandname {
+        font-family: 'Amatic SC', cursive;
+        font-size: 48px;
+      }
+
+    </style>
+
+    <div id="banana">
+      <img src="../icons/bananas.svg"/>
+    </div>
+
+    <div id="text">
+      <div id="brandname">Food Matters</div>
+      This is bananas!
+    </div>
+
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: "fm-welcome-animation"
+
+  });
+
+</script>
