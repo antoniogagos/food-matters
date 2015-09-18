@@ -1,0 +1,19 @@
+{
+  "name": "food-matters",
+  "version": "0.0.0",
+  "homepage": "https://github.com/balusus/food-matters",
+  "authors": [
+    "Antonio Garcia <antoniogagos@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~1.1.3"
+  }
+}
