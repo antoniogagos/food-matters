@@ -12,7 +12,7 @@
         background-image: url('../images/bg.png');
       }
 
-      #banana img {
+      #bananas img {
         height: 130px;
         width: 130px;
       }
@@ -29,7 +29,7 @@
 
     </style>
 
-    <div id="banana">
+    <div id="bananas">
       <img src="../icons/bananas.svg"/>
     </div>
 
@@ -45,7 +45,28 @@
 
   Polymer({
 
-    is: "fm-welcome-animation"
+    is: "fm-welcome-animation",
+
+    attached: function() {
+      var bananaEffect = new KeyframeEffect(this.$.bananas, [
+        {'transform': 'translateY(-60%)', opacity: 0},
+        {'transform': 'none', opacity: 1}
+      ], {
+        duration: 600
+      });
+
+      var textEffect = new KeyframeEffect(this.$.text, [
+        {'transform': 'translateY(60%)', opacity: 0},
+        {'transform': 'none', opacity: 1}
+      ], {
+        duration: 600,
+        delay: 150,
+        fill: 'both'
+      });
+
+      var groupEffect = new GroupEffect([bananaEffect, textEffect]);
+      document.timeline.play(groupEffect);
+    }
 
   });
 

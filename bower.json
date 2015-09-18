@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
-    "polymer": "~1.1.3"
+    "polymer": "~1.1.3",
+    "web-animations-js": "~2.1.2"
   }
 }
