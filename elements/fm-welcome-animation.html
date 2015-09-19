@@ -54,9 +54,9 @@
         value: function() {
           var texts = [
             'This is bananas!',
-            'You are what you eat',
+            'You are what you don\'t eat',
             '85% free of pesticides',
-            'Ecologic farm',
+            'Component based farming',
             'Strawberry harvest is only in summer...'
           ];
 
@@ -76,11 +76,11 @@
       });
 
       var textEffect = new KeyframeEffect(this.$.text, [
-        {'transform': 'translateY(60%)', opacity: 0},
+        {'transform': 'translateY(30%)', opacity: 0},
         {'transform': 'none', opacity: 1}
       ], {
-        duration: 600,
-        delay: 150,
+        duration: 400,
+        delay: 300,
         fill: 'both'
       });
 
@@ -95,7 +95,7 @@
     disappear: function(callback) {
       var effect = new KeyframeEffect(this, [
         {transform: 'scale(1)', opacity: 1},
-        {transform: 'scale(1.2)', opacity: 0}
+        {transform: 'scale(1.1)', opacity: 0}
       ], {
         duration: 200,
         fill: 'both'

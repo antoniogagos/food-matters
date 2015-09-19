@@ -2,12 +2,46 @@
   <template>
 
     <style>
+
+      :host {
+      }
+
+      fm-welcome-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+
+      paper-toolbar {
+        --paper-toolbar-background: #F6F4E7;
+        --paper-toolbar-color: #414141;
+
+        --paper-toolbar: {
+          background-image: url('../images/bg.png');
+        }
+      }
+
     </style>
 
     <fm-welcome-animation
       id="fmWelcome"
       on-initial-animation-finished="_onFmWelcomeAnimationFinished">
     </fm-welcome-animation>
+
+    <paper-toolbar>
+      <div class="title">{{currentMonth}}</div>
+    </paper-toolbar>
+
+    <div id="plants">
+      <template is="dom-repeat" items="{{plants}}">
+        <template is="dom-if" if="{{_computePlantIf(item)}}">
+          <div class="plant">{{item.name}}</div>
+        </template>
+      </template>
+    </div>
 
   </template>
 </dom-module>
@@ -18,12 +52,69 @@
 
     is: "fm-app",
 
+    properties: {
+
+      currentMonth: {
+        type: String,
+        value: function() {
+          var d = new Date();
+          var month = d.getMonth();
+          var months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+          return months[month];
+        }
+      },
+
+      plants: {
+        type: Array,
+        value: function() {
+          return [
+            {name: 'albaricoque', type: 0, months: [4,5,6,7,8]},
+            {name: 'arándanos', type: 0, months: [5,6,7,8,9,10,11]},
+            {name: 'brevas', type: 0, months: [5,6]},
+            {name: 'cerezas', type: 0, months: [3,4,5,6,7]},
+            {name: 'ciruelas', type: 0, months: [3,4,5,6,7,8]},
+            {name: 'endrina', type: 0, months: [8,9]},
+            {name: 'endrina', type: 0, months: [8,9]},
+            {name: 'frambusa', type: 0, months: [6,7,8,9]},
+            {name: 'fresas', type: 0, months: [2,3,4,5,6]},
+            {name: 'granada', type: 0, months: [0,8,9,10,11]},
+            {name: 'grosellas', type: 0, months: [7,8]},
+            {name: 'higos', type: 0, months: [7,8]},
+            {name: 'lima', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
+            {name: 'limón', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
+            {name: 'limón', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
+            {name: 'mandarina', type: 0, months: [0,1,2,8,9,10,11]},
+            {name: 'manzana', type: 0, months: [0,1,2,3,4,5,8,9,10,11]},
+            {name: 'melocotón', type: 0, months: [4,5,6,7,8]},
+            {name: 'melón', type: 0, months: [6,7,8]},
+            {name: 'membrillo', type: 0, months: [0,1,8,9,10,11]},
+            {name: 'moras', type: 0, months: [7,8]},
+            {name: 'naranjas', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
+            {name: 'nísperos', type: 0, months: [3,4,5]},
+            {name: 'peras', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
+            {name: 'piña', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
+            {name: 'plátanos', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
+            {name: 'pomelo', type: 0, months: [0,1,2,9,10,11]},
+            {name: 'sandía', type: 0, months: [5,6,7,8]},
+            {name: 'uva', type: 0, months: [8,9,10,11]},
+          ];
+        }
+      }
+
+    },
+
     _onFmWelcomeAnimationFinished: function() {
       setTimeout(function() {
         this.$.fmWelcome.disappear(function() {
           this.$.fmWelcome.remove();
         }.bind(this));
       }.bind(this), 1500);
+    },
+
+    _computePlantIf: function(item) {
+      var d = new Date();
+      var currentMonth = d.getMonth();
+      return item.months.indexOf(currentMonth) > -1;
     }
 
   });
