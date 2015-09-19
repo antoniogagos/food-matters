@@ -36,7 +36,7 @@
     </paper-toolbar>
 
     <div id="plants">
-      <template is="dom-repeat" items="{{plants}}">
+      <template is="dom-repeat" items="{{_plants}}">
         <template is="dom-if" if="{{_computePlantIf(item)}}">
           <div class="plant">{{item.name}}</div>
         </template>
@@ -64,40 +64,10 @@
         }
       },
 
-      plants: {
+      _plants: {
         type: Array,
         value: function() {
-          return [
-            {name: 'albaricoque', type: 0, months: [4,5,6,7,8]},
-            {name: 'arándanos', type: 0, months: [5,6,7,8,9,10,11]},
-            {name: 'brevas', type: 0, months: [5,6]},
-            {name: 'cerezas', type: 0, months: [3,4,5,6,7]},
-            {name: 'ciruelas', type: 0, months: [3,4,5,6,7,8]},
-            {name: 'endrina', type: 0, months: [8,9]},
-            {name: 'endrina', type: 0, months: [8,9]},
-            {name: 'frambusa', type: 0, months: [6,7,8,9]},
-            {name: 'fresas', type: 0, months: [2,3,4,5,6]},
-            {name: 'granada', type: 0, months: [0,8,9,10,11]},
-            {name: 'grosellas', type: 0, months: [7,8]},
-            {name: 'higos', type: 0, months: [7,8]},
-            {name: 'lima', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
-            {name: 'limón', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
-            {name: 'limón', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
-            {name: 'mandarina', type: 0, months: [0,1,2,8,9,10,11]},
-            {name: 'manzana', type: 0, months: [0,1,2,3,4,5,8,9,10,11]},
-            {name: 'melocotón', type: 0, months: [4,5,6,7,8]},
-            {name: 'melón', type: 0, months: [6,7,8]},
-            {name: 'membrillo', type: 0, months: [0,1,8,9,10,11]},
-            {name: 'moras', type: 0, months: [7,8]},
-            {name: 'naranjas', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
-            {name: 'nísperos', type: 0, months: [3,4,5]},
-            {name: 'peras', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
-            {name: 'piña', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
-            {name: 'plátanos', type: 0, months: [0,1,2,3,4,5,6,7,8,9,10,11]},
-            {name: 'pomelo', type: 0, months: [0,1,2,9,10,11]},
-            {name: 'sandía', type: 0, months: [5,6,7,8]},
-            {name: 'uva', type: 0, months: [8,9,10,11]},
-          ];
+          return new Polymer.IronMeta({type: 'fm-data'}).byKey('plants');
         }
       }
 
