@@ -4,7 +4,10 @@
     <style>
     </style>
 
-    <fm-welcome-animation></fm-welcome-animation>
+    <fm-welcome-animation
+      id="fmWelcome"
+      on-initial-animation-finished="_onFmWelcomeAnimationFinished">
+    </fm-welcome-animation>
 
   </template>
 </dom-module>
@@ -13,7 +16,15 @@
 
   Polymer({
 
-    is: "fm-app"
+    is: "fm-app",
+
+    _onFmWelcomeAnimationFinished: function() {
+      setTimeout(function() {
+        this.$.fmWelcome.disappear(function() {
+          this.$.fmWelcome.remove();
+        }.bind(this));
+      }.bind(this), 1500);
+    }
 
   });
 

@@ -68,8 +68,9 @@
 
     attached: function() {
       var bananaEffect = new KeyframeEffect(this.$.bananas, [
-        {'transform': 'translateY(-60%)', opacity: 0},
-        {'transform': 'none', opacity: 1}
+        {'transform': 'scale(0.2)', opacity: 0},
+        {'transform': 'scale(1.1)', opacity: 1},
+        {'transform': 'scale(1)', opacity: 1}
       ], {
         duration: 600
       });
@@ -86,6 +87,22 @@
       var groupEffect = new GroupEffect([bananaEffect, textEffect]);
       var player = document.timeline.play(groupEffect);
 
+      player.onfinish = function() {
+        this.fire('initial-animation-finished');
+      }.bind(this);
+    },
+
+    disappear: function(callback) {
+      var effect = new KeyframeEffect(this, [
+        {transform: 'scale(1)', opacity: 1},
+        {transform: 'scale(1.2)', opacity: 0}
+      ], {
+        duration: 200,
+        fill: 'both'
+      });
+
+      var player = document.timeline.play(effect);
+      player.onfinish = callback;
     }
 
   });
