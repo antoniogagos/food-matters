@@ -36,10 +36,8 @@
     </paper-toolbar>
 
     <div id="plants">
-      <template is="dom-repeat" items="{{_plants}}">
-        <template is="dom-if" if="{{_computePlantIf(item)}}">
-          <div class="plant">{{item.name}}</div>
-        </template>
+      <template is="dom-repeat" items="{{_computePlantsMonths(_plants)}}">
+        <div class="plant">{{item.name}}</div>
       </template>
     </div>
 
@@ -81,10 +79,13 @@
       }.bind(this), 1500);
     },
 
-    _computePlantIf: function(item) {
+    _computePlantsMonths: function(plants) {
       var d = new Date();
       var currentMonth = d.getMonth();
-      return item.months.indexOf(currentMonth) > -1;
+
+      return plants.filter(function(p) {
+        return p.months.indexOf(currentMonth) > -1;
+      });
     }
 
   });
