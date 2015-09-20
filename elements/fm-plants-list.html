@@ -1,0 +1,57 @@
+<dom-module id="fm-plants-list">
+  <template>
+
+    <style>
+
+      :host {
+        @apply(--layout-vertical);
+        margin: 15px;
+      }
+
+      .plant {
+        margin-bottom: 5px;
+        padding: 20px;
+      }
+
+      .plant::first-letter {
+        text-transform: uppercase;
+      }
+
+    </style>
+
+    <template is="dom-repeat" items="{{_computePlantsMonths(_plants)}}">
+      <paper-material class="plant" elevation="1">
+        <span>{{item.name}}</span>
+      </paper-material>
+    </template>
+
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: "fm-plants-list",
+
+    properties: {
+      _plants: {
+        type: Array,
+        value: function() {
+          return new Polymer.IronMeta({type: 'fm-data'}).byKey('plants');
+        }
+      }
+    },
+
+    _computePlantsMonths: function(plants) {
+      var d = new Date();
+      var currentMonth = d.getMonth();
+
+      return plants.filter(function(p) {
+        return p.months.indexOf(currentMonth) > -1;
+      });
+    }
+
+  });
+
+</script>

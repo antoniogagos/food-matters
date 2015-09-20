@@ -35,11 +35,7 @@
       <div class="title">{{currentMonth}}</div>
     </paper-toolbar>
 
-    <div id="plants">
-      <template is="dom-repeat" items="{{_computePlantsMonths(_plants)}}">
-        <div class="plant">{{item.name}}</div>
-      </template>
-    </div>
+    <fm-plants-list></fm-plants-list>
 
   </template>
 </dom-module>
@@ -60,13 +56,6 @@
           var months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
           return months[month];
         }
-      },
-
-      _plants: {
-        type: Array,
-        value: function() {
-          return new Polymer.IronMeta({type: 'fm-data'}).byKey('plants');
-        }
       }
 
     },
@@ -77,15 +66,6 @@
           this.$.fmWelcome.remove();
         }.bind(this));
       }.bind(this), 1500);
-    },
-
-    _computePlantsMonths: function(plants) {
-      var d = new Date();
-      var currentMonth = d.getMonth();
-
-      return plants.filter(function(p) {
-        return p.months.indexOf(currentMonth) > -1;
-      });
     }
 
   });
