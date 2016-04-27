@@ -86,7 +86,7 @@
 
       var groupEffect = new GroupEffect([bananaEffect, textEffect]);
       var player = document.timeline.play(groupEffect);
-
+      
       player.onfinish = function() {
         this.fire('initial-animation-finished');
       }.bind(this);

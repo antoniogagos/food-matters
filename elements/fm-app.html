@@ -15,6 +15,23 @@
         z-index: 1;
       }
 
+      .style-scope paper-checkbox {
+        padding-right: 8px;
+      }
+      paper-checkbox.red {
+         --paper-checkbox-checked-color: var(--paper-red-500);
+         --paper-checkbox-checked-ink-color: var(--paper-red-500);
+         --paper-checkbox-unchecked-color: var(--paper-red-900);
+         --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
+         --paper-checkbox-label-color: var(--paper-red-500);
+       }
+       paper-checkbox.green {
+         --paper-checkbox-checked-color: var(--paper-green-500);
+         --paper-checkbox-checked-ink-color: var(--paper-green-500);
+         --paper-checkbox-unchecked-color: var(--paper-green-900);
+         --paper-checkbox-unchecked-ink-color: var(--paper-green-900);
+         --paper-checkbox-label-color: var(--paper-green-500);
+       }
 
       paper-toolbar {
         --paper-toolbar-background: #F6F4E7;
@@ -40,6 +57,8 @@
         <paper-toolbar>
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <div class="title">{{currentMonth}}</div>
+          <paper-checkbox checked noink class="red">Frutas</paper-checkbox>
+          <paper-checkbox noink class="green"> Verduras</paper-checkbox>
         </paper-toolbar>
 
         <fm-plants-list></fm-plants-list>
@@ -56,6 +75,7 @@
     is: "fm-app",
 
     properties: {
+
 
       currentMonth: {
         type: String,
